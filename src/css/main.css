@@ -1,0 +1,39 @@
+#app {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    font-family: monospace;
+    max-width: 100%;
+}
+
+#loginForm {
+    display: flex;
+    flex-direction: column;
+    row-gap: 1.5em;
+    background-color: #1B9AAA;
+    padding: 5rem;
+    border-radius: 5px;
+    max-width: 100%;
+}
+
+#navBar {
+    display: flex;
+    column-gap: 1em;
+    margin-bottom: 1em;
+    max-width: 100%;
+    align-self: flex-end;
+    padding: 1.5em;
+}
+
+.link {
+    color: brown;
+    max-width: 100%;
+    font-size: 2em;
+}
+
+.loginInput, .loginBtn {
+    font-size: 1.5em;
+}
