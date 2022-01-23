@@ -1,10 +1,15 @@
 import React from "react"
 import ReactDOM from "react-dom"
 import App from "./components/App.jsx"
+import {ChakraProvider} from "@chakra-ui/react"
 import "./css/reset.css"
-import "./css/main.css"
 
-ReactDOM.render(<App />, document.getElementById("root"))
+ReactDOM.render(
+    <ChakraProvider>
+        <App />
+    </ChakraProvider>,
+    document.getElementById("root")
+)
 
 
 
