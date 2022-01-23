@@ -6,7 +6,7 @@ export default function RecipesGridDisplay(props) {
     return (
         <Grid paddingY="1em" gap="1em" w="max-content" justify="center" templateColumns={["1fr","1fr 1fr 1fr 1fr"]}>
             {props.recipes.map(
-                rec =><RecipeCard menu={props.menu} recipeObject={rec}/>
+                rec =><RecipeCard menuRecipes={props.menuRecipes} setMenuRecipes={props.setMenuRecipes} menu={props.menu} recipeObject={rec}/>
             )}
         </Grid>
     )

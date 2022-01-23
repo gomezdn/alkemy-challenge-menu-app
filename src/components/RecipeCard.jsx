@@ -11,18 +11,25 @@ import {CheckCircleIcon, SmallCloseIcon} from "@chakra-ui/icons"
 
 export default function RecipeCard(props) {
 
+    const recipeObject = props.recipeObject
+
     const info = {
-        title: props.recipeObject.title,
-        imageUrl: props.recipeObject.image,
-        cheap: props.recipeObject.cheap,
-        glutenFree: props.recipeObject.glutenFree,
-        popular: props.recipeObject.veryPopular,
-        healthy: props.recipeObject.veryHealthy,
-        vegan: props.recipeObject.vegan,
-        vegetarian: props.recipeObject.vegetarian,
-        price: props.recipeObject.pricePerServing,
-        time: props.recipeObject.readyInMinutes,
-        health: props.recipeObject.healthScore,
+        title: recipeObject.title,
+        imageUrl: recipeObject.image,
+        cheap: recipeObject.cheap,
+        glutenFree: recipeObject.glutenFree,
+        popular: recipeObject.veryPopular,
+        healthy: recipeObject.veryHealthy,
+        vegan: recipeObject.vegan,
+        vegetarian: recipeObject.vegetarian,
+        price: recipeObject.pricePerServing,
+        time: recipeObject.readyInMinutes,
+        health: recipeObject.healthScore,
+    }
+
+    function addToMenu() {
+        props.setMenuRecipes(props.menuRecipes.concat(recipeObject))
+        console.log(props.menuRecipes)
     }
 
     return (
@@ -60,7 +67,8 @@ export default function RecipeCard(props) {
                 </ListItem>
             </List>
             <Stack w="100%" direction="row" justify="space-around">
-                <Button mb="1em" size="md" paddingX="1em" bg="#D5C3C6" colorScheme="red" variant="outline">Details</Button>
+                <Button mb="1em"          size="md" paddingX="1em" bg="#D5C3C6"
+                        colorScheme="red" onClick={addToMenu} variant="outline">Details</Button>
                 <Button mb="1em" size="md" paddingX="1em" bg="#D5C3C6" colorScheme="red" variant="outline">Add to menu</Button>
             </Stack>
         </Flex>
