@@ -5,7 +5,7 @@ const API = {
         const data = {email: user, password: pass}
         const url = "http://challenge-react.alkemy.org/"
         
-        return axios.post(url, data).then(res => res.data.token).catch(onError)
+        return axios.post(url, data).then(res => res.data.token)
     }
 }
 

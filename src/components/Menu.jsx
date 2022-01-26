@@ -1,11 +1,10 @@
-import React, {useState, useMemo} from "react"
+import React, {useMemo} from "react"
 import RecipeCard from "./RecipeCard.jsx"
 import {Grid, Flex, Text, Stack} from "@chakra-ui/react"
 
 
 export default function Menu(props) {
     
-
     const menuPrice = useMemo(() => {
         const prices = props.menuRecipes.map(recipe => recipe.pricePerServing)
         return prices.reduce((a, b) => a + b, 0)
@@ -36,7 +35,12 @@ export default function Menu(props) {
             </Stack>
             
             <Grid justify="center" align="center" templateColumns={["1fr", "1fr 1fr 1fr 1fr"]} gap="1em">
-                {props.menuRecipes.map(recipe => <RecipeCard recipeObject={recipe}/>)}        
+                {props.menuRecipes.map(recipe => <RecipeCard menuRecipes={props.menuRecipes}
+                                                             addToMenu={props.addToMenu}
+                                                             deleteFromMenu={props.deleteFromMenu}
+                                                             recipeObject={recipe}
+                                                             key={recipe.id}/>
+                )}        
             </Grid>
         </Flex>
     )

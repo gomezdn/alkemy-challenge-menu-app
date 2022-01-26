@@ -1,4 +1,4 @@
-import React from "react"
+import React, {useMemo} from "react"
 import {Flex,
         Stack,
         Image,
@@ -12,7 +12,13 @@ import {CheckCircleIcon, SmallCloseIcon} from "@chakra-ui/icons"
 export default function RecipeCard(props) {
 
     const recipeObject = props.recipeObject
+    const isAdded = () => props.menuRecipes.some(recipe => recipe.id == recipeObject.id)
 
+    const addOrDelText = useMemo(() => {
+        return isAdded() ? "Delete from menu" : "Add to menu"
+    },[isAdded()])
+    
+    
     const info = {
         title: recipeObject.title,
         imageUrl: recipeObject.image,
@@ -27,10 +33,14 @@ export default function RecipeCard(props) {
         health: recipeObject.healthScore,
     }
 
-    function addToMenu() {
-        props.setMenuRecipes(props.menuRecipes.concat(recipeObject))
-        console.log(props.menuRecipes)
+    function handleActionClick() {
+        if (isAdded()) {
+            props.deleteFromMenu(recipeObject)
+        }else {
+            props.addToMenu(recipeObject)
+        }
     }
+
 
     return (
         <Flex maxW={["90vw", "300px"]} paddingX="10%" rowGap="0.5em" border="1px solid #555B6E" 
@@ -68,8 +78,10 @@ export default function RecipeCard(props) {
             </List>
             <Stack w="100%" direction="row" justify="space-around">
                 <Button mb="1em"          size="md" paddingX="1em" bg="#D5C3C6"
-                        colorScheme="red" onClick={addToMenu} variant="outline">Details</Button>
-                <Button mb="1em" size="md" paddingX="1em" bg="#D5C3C6" colorScheme="red" variant="outline">Add to menu</Button>
+                        colorScheme="red" variant="outline">Details</Button>
+               
+                <Button mb="1em" size="md" paddingX="1em" bg="#D5C3C6" onClick={handleActionClick}
+                        colorScheme="red" variant="outline">{addOrDelText}</Button>
             </Stack>
         </Flex>
     )

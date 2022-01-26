@@ -1,21 +1,33 @@
-import React, {useState} from "react"
+import React, {useState, useMemo} from "react"
 import Header from "./Header.jsx"
 import {Flex} from "@chakra-ui/react"
-import Routes from "../routes/AppRoutes.jsx"
+import AppRoutes from "../routes/AppRoutes.jsx"
 
 
 export default function Layout() {
 
 
+
     const recipes = JSON.parse(window.localStorage.getItem("recipes")).data.results
     
-    const [menuRecipes, setMenuRecipes] = useState([recipes[0],recipes[2],recipes[5],recipes[3]])
+    const [menuRecipes, setMenuRecipes] = useState([])
+
+    const [hasToken, setHasToken] = useState(window.localStorage.authToken !== undefined)
+
+    function addToMenu(recipeToAdd) {
+        setMenuRecipes(menuRecipes.concat([recipeToAdd]))
+    }
+    
+    function deleteFromMenu(recipeToDel) {
+        setMenuRecipes(menuRecipes.filter(recipe => recipe.id !== recipeToDel.id))
+    }
 
     return (
+        
         <Flex align="center" rowGap="1em" direction="column">
-            <Header/>
-            <Routes recipes={recipes} menuRecipes={menuRecipes}
-                    setMenuRecipes={setMenuRecipes}/>
+            <Header hasToken={hasToken} setHasToken={setHasToken}/>
+            <AppRoutes recipes={recipes} menuRecipes={menuRecipes} hasToken={hasToken} setHasToken={setHasToken}
+                       addToMenu={addToMenu} deleteFromMenu={deleteFromMenu}/>
         </Flex>
     )
 }
