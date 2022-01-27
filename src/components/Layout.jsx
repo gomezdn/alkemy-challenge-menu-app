@@ -1,4 +1,4 @@
-import React, {useState, useMemo} from "react"
+import React, {useState} from "react"
 import Header from "./Header.jsx"
 import {Flex} from "@chakra-ui/react"
 import AppRoutes from "../routes/AppRoutes.jsx"
@@ -6,20 +6,45 @@ import AppRoutes from "../routes/AppRoutes.jsx"
 
 export default function Layout() {
 
-
-
     const recipes = JSON.parse(window.localStorage.getItem("recipes")).data.results
     
-    const [menuRecipes, setMenuRecipes] = useState([])
-
+    const [menuRecipes, setMenuRecipes] = useState(getMenuFromLocalStorage())
+    
     const [hasToken, setHasToken] = useState(window.localStorage.authToken !== undefined)
 
+
+    function spaceValidation(recipe) {
+        if (menuRecipes.length > 3) {
+            return {errorMessage: "Yor menu is full. Try removing some.", hasSpace: false}
+        } else {
+            const newMenu = menuRecipes.concat([recipe])
+            const stillHasSpace = newMenu.filter(rec => rec.vegetarian == recipe.vegetarian).length <= 2
+            const type = recipe.vegetarian ? "vegan" : "non vegan"
+            return {errorMessage: `There are already enough ${type} recipes in the menu.`, hasSpace: stillHasSpace}
+        }
+    }
+
     function addToMenu(recipeToAdd) {
-        setMenuRecipes(menuRecipes.concat([recipeToAdd]))
+        const validation = spaceValidation(recipeToAdd)
+        if (!validation.hasSpace) {alert(validation.errorMessage);return}
+        const newMenu = menuRecipes.concat([recipeToAdd])
+        setMenuRecipes(newMenu)
+        saveToLocalStorage(newMenu)
     }
     
     function deleteFromMenu(recipeToDel) {
-        setMenuRecipes(menuRecipes.filter(recipe => recipe.id !== recipeToDel.id))
+        const filteredMenu = menuRecipes.filter(recipe => recipe.id !== recipeToDel.id)
+        setMenuRecipes(filteredMenu)
+        saveToLocalStorage(filteredMenu)
+    }
+
+    function saveToLocalStorage(menu) {
+        window.localStorage.setItem("menu", JSON.stringify(menu))
+    }
+
+    function getMenuFromLocalStorage() {
+        const menu = JSON.parse(window.localStorage.getItem("menu"))
+        return menu || []
     }
 
     return (

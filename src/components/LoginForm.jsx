@@ -27,9 +27,11 @@ export default function LoginForm(props) {
         const form = event.target
         const user = event.target.email.value
         const pass = event.target.password.value
-        API.getLoginToken(user, pass)
-                                    .then(res => { saveTokenToStorage(res) ; props.setHasToken(true) ; navigate("/")})
-                                    .catch(() => handleError(form))
+        API.getLoginToken(user, pass).then(res => {
+                                        saveTokenToStorage(res)
+                                        props.setHasToken(true)
+                                        navigate("/")
+                                    }).catch(() => handleError(form))
         
 }
 

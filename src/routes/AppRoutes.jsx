@@ -34,7 +34,7 @@ export default function AppRoutes(props) {
             <Route path="/logout" element={<h1>LOGOUT</h1>}></Route>
         
         
-            <Route path="/login" element={login}></Route>
+            <Route path="/login" element={ !props.hasToken ? login : <Navigate to="/"/>}></Route>
 
             <Route path="*" element={<h1>Not found 404</h1>}></Route>
          </Routes>
