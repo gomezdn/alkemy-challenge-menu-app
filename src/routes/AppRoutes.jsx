@@ -18,6 +18,7 @@ export default function AppRoutes(props) {
         deleteFromMenu={props.deleteFromMenu}
         menuRecipes={props.menuRecipes}
         recipes={props.recipes}
+        setRecipes={props.setRecipes}
     />
 
     const login = <LoginForm setHasToken={props.setHasToken}/>

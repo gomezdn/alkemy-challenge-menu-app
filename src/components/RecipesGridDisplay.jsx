@@ -1,13 +1,31 @@
 import React from "react"
 import RecipeCard from "../components/RecipeCard.jsx"
-import {Grid, Stack, Input} from "@chakra-ui/react"
+import API from "../api/Api.js"
+import {Grid, Stack, Input, FormControl, InputLeftElement, InputGroup, Button} from "@chakra-ui/react"
+import {Search2Icon} from "@chakra-ui/icons"
 
 export default function RecipesGridDisplay(props) {
 
+    function handleSubmit(event) {
+        event.preventDefault()
+        const searchTerm = event.target.search.value
+        API.getRecipes(searchTerm).then(res => props.setRecipes(res))
+    }
+
     return (
-        <Stack direction="column" align="center">
-            <Input variant="filled"  _placeholder={{color: "black"}} focusBorderColor="brown"
-                    textAlign="center" width={["70%", "35%"]} placeholder="Search for recipes here..."/>
+        <Stack direction="column" align="center" w="100%">
+
+            <FormControl as="form" width={["60%", "35%"]} onSubmit={handleSubmit}>
+                <InputGroup>
+                    <InputLeftElement type="submit" children={<Search2Icon/>}
+                                      pointerEvents="none" pl="1em"/>
+                    <Input variant="filled"  type="text" _placeholder={{color: "black"}}
+                           autoComplete="off" focusBorderColor="brown" 
+                           textAlign="center" w="100%" name="search" placeholder="Search for recipes here..."/>
+                </InputGroup>
+                <Button type="submit" display="none"/>   
+            </FormControl>
+           
             <Grid paddingY="1em" gap="1em" w="max-content" justify="center" templateColumns={["1fr","1fr 1fr 1fr 1fr"]}>
                 {props.recipes.map(
                     recipe => <RecipeCard menuRecipes={props.menuRecipes}

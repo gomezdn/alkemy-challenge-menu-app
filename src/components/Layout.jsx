@@ -6,8 +6,8 @@ import AppRoutes from "../routes/AppRoutes.jsx"
 
 export default function Layout() {
 
-    const recipes = JSON.parse(window.localStorage.getItem("recipes")).data.results
-    
+    const [recipes, setRecipes] = useState([])
+
     const [menuRecipes, setMenuRecipes] = useState(getMenuFromLocalStorage())
     
     const [hasToken, setHasToken] = useState(window.localStorage.authToken !== undefined)
@@ -18,8 +18,8 @@ export default function Layout() {
             return {errorMessage: "Yor menu is full. Try removing some.", hasSpace: false}
         } else {
             const newMenu = menuRecipes.concat([recipe])
-            const stillHasSpace = newMenu.filter(rec => rec.vegetarian == recipe.vegetarian).length <= 2
-            const type = recipe.vegetarian ? "vegan" : "non vegan"
+            const stillHasSpace = newMenu.filter(rec => rec.vegan == recipe.vegan).length <= 2
+            const type = recipe.vegan ? "vegan" : "non vegan"
             return {errorMessage: `There are already enough ${type} recipes in the menu.`, hasSpace: stillHasSpace}
         }
     }
@@ -50,9 +50,11 @@ export default function Layout() {
     return (
         
         <Flex align="center" rowGap="1em" direction="column">
-            <Header hasToken={hasToken} setHasToken={setHasToken}/>
-            <AppRoutes recipes={recipes} menuRecipes={menuRecipes} hasToken={hasToken} setHasToken={setHasToken}
-                       addToMenu={addToMenu} deleteFromMenu={deleteFromMenu}/>
+            <Header hasToken={hasToken}      setHasToken={setHasToken}/>
+            <AppRoutes recipes={recipes}     menuRecipes={menuRecipes}
+                       hasToken={hasToken}   setHasToken={setHasToken}
+                       addToMenu={addToMenu} deleteFromMenu={deleteFromMenu}
+                       setRecipes={setRecipes}/>
         </Flex>
     )
 }

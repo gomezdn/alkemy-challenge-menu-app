@@ -26,7 +26,7 @@ export default function Header(props) {
             <Stack direction={["column", "row"]} rowGap="0.5em" justify="space-between" align="center">
 
                 <Heading color="#FFFDFD" ml={["0", "1em"]}>Your menu!</Heading>
-                <NavBar hasToken={props.hasToken}/>
+                <NavBar hasToken={props.hasToken} setHasToken={props.setHasToken}/>
             </Stack>
         </Box>
     )
