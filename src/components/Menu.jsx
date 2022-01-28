@@ -24,7 +24,7 @@ export default function Menu(props) {
 
     const menuPrice = useMemo(() => {
         const prices = props.menuRecipes.map(recipe => recipe.pricePerServing)
-        return prices.reduce((a, b) => a + b, 0).toFixed(2)
+        return (prices.reduce((a, b) => a + b, 0) / 100).toFixed(2) 
     }, [props.menuRecipes])
     
     const avgPrepTime = useMemo(() => {
