@@ -9,6 +9,7 @@ function NavBar(props) {
     function logout() {
         delete window.localStorage.authToken
         props.setHasToken(false)
+        props.setRecipes([])
     }
 
     return (

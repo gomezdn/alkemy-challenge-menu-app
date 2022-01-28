@@ -1,4 +1,4 @@
-import React, {useState} from "react"
+import React, {useState, useMemo} from "react"
 import Header from "./Header.jsx"
 import {Flex} from "@chakra-ui/react"
 import AppRoutes from "../routes/AppRoutes.jsx"
@@ -10,7 +10,12 @@ export default function Layout() {
 
     const [menuRecipes, setMenuRecipes] = useState(getMenuFromLocalStorage())
     
+    const allRecipes = useMemo(() => {
+        return menuRecipes.concat(recipes)
+    },[menuRecipes, recipes])
+
     const [hasToken, setHasToken] = useState(window.localStorage.authToken !== undefined)
+
 
 
     function spaceValidation(recipe) {
@@ -50,11 +55,11 @@ export default function Layout() {
     return (
         
         <Flex align="center" rowGap="1em" direction="column">
-            <Header hasToken={hasToken}      setHasToken={setHasToken}/>
+            <Header hasToken={hasToken}      setHasToken={setHasToken} setRecipes={setRecipes}/>
             <AppRoutes recipes={recipes}     menuRecipes={menuRecipes}
                        hasToken={hasToken}   setHasToken={setHasToken}
                        addToMenu={addToMenu} deleteFromMenu={deleteFromMenu}
-                       setRecipes={setRecipes}/>
+                       setRecipes={setRecipes} allRecipes={allRecipes}/>
         </Flex>
     )
 }

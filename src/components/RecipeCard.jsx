@@ -1,4 +1,5 @@
 import React, {useMemo} from "react"
+import {Link} from "react-router-dom"
 import {Flex,
         Stack,
         Image,
@@ -6,10 +7,8 @@ import {Flex,
         Button,
         List,
         ListItem,
-        ListIcon,
-        useDisclosure} from "@chakra-ui/react"
+        ListIcon} from "@chakra-ui/react"
 import {CheckCircleIcon, SmallCloseIcon} from "@chakra-ui/icons"
-import DetailModal from "./DetailModal.jsx"
 
 export default function RecipeCard(props) {
 
@@ -44,7 +43,6 @@ export default function RecipeCard(props) {
         }
     }
 
-    const {isOpen, onOpen, onClose} = useDisclosure()
 
     return (
         <Flex maxW={["90vw", "300px"]} paddingX="10%" rowGap="0.5em" border="1px solid #555B6E" 
@@ -52,7 +50,8 @@ export default function RecipeCard(props) {
               direction="column"  borderRadius="5px"     shadow="xl"
               justify="space-evenly">
 
-            <Heading maxW="max-content" fontFamily="monospace" mt="0.5em" fontSize="2.5em" textAlign="center">{info.title}</Heading>
+            <Heading maxW="max-content" fontFamily="monospace" color="brown"
+                     mt="0.5em" fontSize="2.2em" textAlign="center">{info.title}</Heading>
             <Image borderRadius="5px" w="200px" h="auto" src={info.imageUrl}/>
             <List  textAlign="left">
                 <ListItem>
@@ -81,14 +80,14 @@ export default function RecipeCard(props) {
                 </ListItem>
             </List>
             <Stack w="100%" direction="row" justify="space-around">
-                <Button mb="1em"          size="md" paddingX="1em" bg="#D5C3C6"
-                        colorScheme="red" variant="outline" onClick={onOpen}>Details</Button>
+                <Link to={`/recipeInfo/${recipeObject.id}`}>
+                    <Button mb="1em" size="md" paddingX="1em" bg="#D5C3C6"
+                        colorScheme="red" variant="outline">Details</Button>
+                </Link>
                
                 <Button mb="1em" size="md" paddingX="1em" bg="#D5C3C6" onClick={handleActionClick}
                         colorScheme="red" variant="outline">{addOrDelText}</Button>
             </Stack>
-            <DetailModal price={info.price} title={info.title} prepTime={info.time} healthScore={info.health}
-                         isOpen={isOpen} onClose={onClose} summary={info.summary}/>
         </Flex>
     )
 }
