@@ -9,3 +9,8 @@ Las rutas están protegidas con react-router-dom en base a la presencia del toke
 El login está validado con formik para verificar que no esté vacío, así como el input de búsqueda de recetas, el cual tiene que tener al menos dos caracteres.
 
 Si la búsqueda resulta vacía, se mostrará un error.
+
+
+NPM INSTALL (installs dependencies)
+
+NPM RUN START (serves the build folder in localhost:8080)
