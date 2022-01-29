@@ -33,6 +33,8 @@ export default function Layout() {
 
     function showAddingError(message) {
         Swal.fire({
+            background: "#EEE5D5",
+            confirmButtonColor: "#752F3A",
             text: message,
             confirmButtonText: 'Ok'
           })

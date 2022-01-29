@@ -26,6 +26,8 @@ export default function LoginForm(props) {
 
     function handleError() {
         Swal.fire({
+            background: "#EEE5D5",
+            confirmButtonColor: "#752F3A",
             title: 'There was a problem with your input or connection.',
             text: 'Try again.',
             icon: 'error',

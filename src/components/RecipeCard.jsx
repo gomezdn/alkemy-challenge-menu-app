@@ -51,13 +51,12 @@ export default function RecipeCard(props) {
         const listItems = keys.map(key => {
             return(
                 <ListItem>
-                    <ListIcon color={propsObject[key] ? "#aed687" : "black"}
+                    <ListIcon key={key} color={propsObject[key] ? "#aed687" : "black"}
                               as={propsObject[key] ? CheckCircleIcon : SmallCloseIcon}/>
                     {key}
                 </ListItem>
             )
         })
-        console.log(listItems)
         return listItems
     }
 

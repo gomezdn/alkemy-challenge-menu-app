@@ -1,6 +1,7 @@
 import React from "react"
 import RecipeCard from "../components/RecipeCard.jsx"
 import API from "../api/Api.js"
+import Swal from "sweetalert2"
 import {useFormik} from "formik"
 import {Grid, Stack, Input, FormControl,
        InputLeftElement, InputGroup, Button, Text} from "@chakra-ui/react"
@@ -10,7 +11,17 @@ export default function RecipesGridDisplay(props) {
 
     function searchRecipes(values) {
         const searchTerm = values.search
-        API.getRecipes(searchTerm).then(res => props.setRecipes(res))
+        API.getRecipes(searchTerm).then(res => {
+            if (res.length == 0) {
+                Swal.fire({
+                    background: "#EEE5D5",
+                    confirmButtonColor: "#752F3A",
+                    text: "No results, try something else.",
+                    confirmButtonText: 'Ok'})
+            } else {
+                props.setRecipes(res)
+              }
+        })
     }
 
     function validate(values) {
@@ -47,10 +58,10 @@ export default function RecipesGridDisplay(props) {
             <Grid paddingY="1em" gap="1em 1em" w="max-content" justify="center" templateColumns={["1fr","1fr 1fr 1fr 1fr"]}>
                 {props.recipes.map(
                     recipe => <RecipeCard menuRecipes={props.menuRecipes}
-                                        addToMenu={props.addToMenu}
-                                        deleteFromMenu={props.deleteFromMenu}
-                                        recipeObject={recipe}
-                                        key={recipe.id}/>
+                                          addToMenu={props.addToMenu}
+                                          deleteFromMenu={props.deleteFromMenu}
+                                          recipeObject={recipe}
+                                          key={recipe.id}/>
                 )}
             </Grid>
         </Stack>
