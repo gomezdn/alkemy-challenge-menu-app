@@ -31,6 +31,7 @@ export default function LoginForm(props) {
             icon: 'error',
             confirmButtonText: 'Continue'
           })
+        setBtnLoading(false)
     }
 
     function saveTokenToStorage(token) {

@@ -5,8 +5,6 @@ import AppRoutes from "../routes/AppRoutes.jsx"
 import Swal from "sweetalert2"
 
 
-
-
 export default function Layout() {
 
     const [recipes, setRecipes] = useState([])

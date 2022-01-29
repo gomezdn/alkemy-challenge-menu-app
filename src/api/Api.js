@@ -12,7 +12,7 @@ const API = {
     },
 
     getRecipes: (searchTerm) => {
-        const url = `${baseUrl}&query=${searchTerm}&number=12&apiKey=${key}&addRecipeInformation=true`
+        const url = `${baseUrl}&query=${searchTerm}&number=16&apiKey=${key}&addRecipeInformation=true`
         return axios.get(url).then(res => res.data.results)
     }
 }

@@ -7,8 +7,8 @@ export default function RecipeDetails(props) {
     const recipe = props.allRecipes.find(rec => rec.id == id)
 
     return (
-        <Stack fontFamily="monospace" bg="#EFF7F6" pt="1em" margin={["0", "0 7em 0.5em 7em"]} rounded="xl" fontSize="1.5em" 
-               direction="column" align="center" justify="center" spacing="1em">
+        <Stack fontFamily="monospace" bg="#EEE5D5" pt="1em" margin={["0", "0 7em 0.5em 7em"]} rounded="xl" fontSize="1.5em" 
+               direction="column" align="center" textAlign="center" justify="center" spacing="1em">
 
             <Heading color="brown" fontFamily="monospace">{recipe.title}</Heading>
             <Image maxW={["200px", "400px"]} rounded="md" h="auto" src={recipe.image}/>

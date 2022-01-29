@@ -46,10 +46,10 @@ export default function Menu(props) {
 
     if (isEmpty) {return EmptyMenu()}
         else return (
-            <Flex display={props.menuRecipes[0] ? "flex" : "none"} bg="#AB7678" direction="column" align="center" justify="space-around" mb="1em"
+            <Flex display={props.menuRecipes[0] ? "flex" : "none"} bg="#EEE5D5" direction="column" align="center" justify="space-around" mb="1em"
                 spacing="1em" p="2em" rounded="md">
 
-                <Stack mb="1em" fontFamily="monospace" fontSize="1.7em">
+                <Stack bg="#E1D2B7" rounded="md" p="1em" color="brown" mb="1em" fontFamily="monospace" fontSize="1.8em">
                     <Text>Menu price: {menuPrice ? `$ ${menuPrice}` : ""}</Text>
                     <Text>Average preparation time: {avgPrepTime ? `${avgPrepTime} min`: ""}</Text>
                     <Text>Average health score: {avgHealthScore ? avgHealthScore : ""}</Text>
