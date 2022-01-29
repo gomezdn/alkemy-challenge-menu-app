@@ -4,6 +4,7 @@ import LoginForm from "../components/LoginForm.jsx"
 import RecipesGridDisplay from "../components/RecipesGridDisplay.jsx"
 import Menu from "../components/Menu.jsx"
 import RecipeDetails from "../components/RecipeDetails.jsx"
+import NotFound from "../components/NotFound.jsx"
 
 export default function AppRoutes(props) {
 
@@ -38,7 +39,7 @@ export default function AppRoutes(props) {
 
             <Route path="/recipeInfo/:id" element={props.hasToken ? recipeDetails : goToLogin}></Route>
     
-            <Route path="*" element={<h1>Not found 404</h1>}></Route>
+            <Route path="*" element={<NotFound />}></Route>
          </Routes>
     )
 }

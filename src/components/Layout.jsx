@@ -2,6 +2,8 @@ import React, {useState, useMemo} from "react"
 import Header from "./Header.jsx"
 import {Flex} from "@chakra-ui/react"
 import AppRoutes from "../routes/AppRoutes.jsx"
+import Swal from "sweetalert2"
+
 
 
 
@@ -21,18 +23,26 @@ export default function Layout() {
 
     function spaceValidation(recipe) {
         if (menuRecipes.length > 3) {
-            return {errorMessage: "Yor menu is full. Try removing some.", hasSpace: false}
-        } else {
-            const newMenu = menuRecipes.concat([recipe])
-            const stillHasSpace = newMenu.filter(rec => rec.vegan == recipe.vegan).length <= 2
+            return "Yor menu is full. Try removing some."
+        }
+        const newMenu = menuRecipes.concat([recipe])
+        const hasSpace = newMenu.filter(rec => rec.vegan == recipe.vegan).length <= 2
+        if (!hasSpace) {
             const type = recipe.vegan ? "vegan" : "non vegan"
-            return {errorMessage: `There are already enough ${type} recipes in the menu.`, hasSpace: stillHasSpace}
+            return `There are already enough ${type} recipes in the menu.`
         }
     }
 
+    function showAddingError(message) {
+        Swal.fire({
+            text: message,
+            confirmButtonText: 'Ok'
+          })
+    }
+
     function addToMenu(recipeToAdd) {
-        const validation = spaceValidation(recipeToAdd)
-        if (!validation.hasSpace) {alert(validation.errorMessage);return}
+        const errorMessage = spaceValidation(recipeToAdd)
+        if (errorMessage) {showAddingError(errorMessage);return}
         const newMenu = menuRecipes.concat([recipeToAdd])
         setMenuRecipes(newMenu)
         saveToLocalStorage(newMenu)

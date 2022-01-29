@@ -46,8 +46,8 @@ export default function Menu(props) {
 
     if (isEmpty) {return EmptyMenu()}
         else return (
-            <Flex display={props.menuRecipes[0] ? "flex" : "none"} bg="#E3C16F" direction="column" align="center" justify="space-around" mb="1em"
-                spacing="1em" p="2em" rounded="lg">
+            <Flex display={props.menuRecipes[0] ? "flex" : "none"} bg="#AB7678" direction="column" align="center" justify="space-around" mb="1em"
+                spacing="1em" p="2em" rounded="md">
 
                 <Stack mb="1em" fontFamily="monospace" fontSize="1.7em">
                     <Text>Menu price: {menuPrice ? `$ ${menuPrice}` : ""}</Text>

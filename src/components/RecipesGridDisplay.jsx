@@ -19,8 +19,8 @@ export default function RecipesGridDisplay(props) {
         return errors
     } 
 
-    const formik = useFormik(
-        {initialValues: {search: ""},
+    const formik = useFormik({
+         initialValues: {search: ""},
          validate,
          validateOnChange: false,
          validateOnBlur: false,

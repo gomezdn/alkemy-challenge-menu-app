@@ -20,15 +20,18 @@ export default function RecipeCard(props) {
     },[isAdded()])
     
     
+    const recipeProps = {
+        Cheap: recipeObject.cheap,
+        GlutenFree: recipeObject.glutenFree,
+        Popular: recipeObject.veryPopular,
+        Healthy: recipeObject.veryHealthy,
+        Vegan: recipeObject.vegan,
+        Vegetarian: recipeObject.vegetarian,
+    }
+
     const info = {
         title: recipeObject.title,
         imageUrl: recipeObject.image,
-        cheap: recipeObject.cheap,
-        glutenFree: recipeObject.glutenFree,
-        popular: recipeObject.veryPopular,
-        healthy: recipeObject.veryHealthy,
-        vegan: recipeObject.vegan,
-        vegetarian: recipeObject.vegetarian,
         price: recipeObject.pricePerServing,
         time: recipeObject.readyInMinutes,
         health: recipeObject.healthScore,
@@ -43,6 +46,20 @@ export default function RecipeCard(props) {
         }
     }
 
+    function displayPropertiesListItems(propsObject) {
+        const keys = Object.keys(propsObject)
+        const listItems = keys.map(key => {
+            return(
+                <ListItem>
+                    <ListIcon color={propsObject[key] ? "#aed687" : "black"}
+                              as={propsObject[key] ? CheckCircleIcon : SmallCloseIcon}/>
+                    {key}
+                </ListItem>
+            )
+        })
+        console.log(listItems)
+        return listItems
+    }
 
     return (
         <Flex maxW={["90vw", "300px"]} paddingX="10%" rowGap="0.5em" border="1px solid #555B6E" 
@@ -53,39 +70,16 @@ export default function RecipeCard(props) {
             <Heading maxW="max-content" fontFamily="monospace" color="brown"
                      mt="0.5em" fontSize="2.2em" textAlign="center">{info.title}</Heading>
             <Image borderRadius="5px" w="200px" h="auto" src={info.imageUrl}/>
+           
             <List  textAlign="left">
-                <ListItem>
-                    <ListIcon color={info.cheap ? "#aed687" : "black"} as={info.cheap ? CheckCircleIcon : SmallCloseIcon}></ListIcon>
-                    Cheap
-                </ListItem>
-                <ListItem>
-                    <ListIcon color={info.glutenFree ? "#aed687" : "black"} as={info.glutenFree ? CheckCircleIcon : SmallCloseIcon}></ListIcon>
-                    Gluten free
-                </ListItem>
-                <ListItem>
-                    <ListIcon color={info.popular ? "#aed687" : "black"} as={info.popular ? CheckCircleIcon : SmallCloseIcon}></ListIcon>
-                    Very popular
-                </ListItem>
-                <ListItem>
-                    <ListIcon color={info.healthy ? "#aed687" : "black"} as={info.healthy ? CheckCircleIcon : SmallCloseIcon}></ListIcon>
-                    Very healthy
-                </ListItem>
-                <ListItem>
-                    <ListIcon color={info.vegan ? "#aed687" : "black"} as={info.vegan ? CheckCircleIcon : SmallCloseIcon}></ListIcon>
-                    Vegan
-                </ListItem>
-                <ListItem>
-                    <ListIcon color={info.vegetarian ? "#aed687" : "black"} as={info.vegetarian ? CheckCircleIcon : SmallCloseIcon}></ListIcon>
-                    Vegetarian
-                </ListItem>
+                {displayPropertiesListItems(recipeProps)}
             </List>
             <Stack w="100%" direction="row" justify="space-around">
                 <Link to={`/recipeInfo/${recipeObject.id}`}>
-                    <Button mb="1em" size="md" paddingX="1em" bg="#D5C3C6"
+                    <Button mb="1em" size="md" p={["1.4em 1em","0 1em"]} bg="#D5C3C6"
                         colorScheme="red" variant="outline">Details</Button>
                 </Link>
-               
-                <Button mb="1em" size="md" paddingX="1em" bg="#D5C3C6" onClick={handleActionClick}
+                <Button mb="1em" size="md" p={["1.4em 0.6em","0 1em"]} bg="#D5C3C6" onClick={handleActionClick}
                         colorScheme="red" variant="outline">{addOrDelText}</Button>
             </Stack>
         </Flex>
