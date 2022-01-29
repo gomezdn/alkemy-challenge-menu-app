@@ -27,6 +27,7 @@ export default function AppRoutes(props) {
     const recipeDetails = <RecipeDetails allRecipes={props.allRecipes}/>
 
     const goToLogin = <Navigate to="/login"/>
+    const goToHome = <Navigate to="/"/>
 
 
     return (
@@ -39,6 +40,8 @@ export default function AppRoutes(props) {
 
             <Route path="/recipeInfo/:id" element={props.hasToken ? recipeDetails : goToLogin}></Route>
     
+            <Route path="/alkemy-challenge-menu-app" element={goToHome}></Route>
+
             <Route path="*" element={<NotFound />}></Route>
          </Routes>
     )
