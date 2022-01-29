@@ -11,6 +11,6 @@ El login está validado con formik para verificar que no esté vacío, así como
 Si la búsqueda resulta vacía, se mostrará un error.
 
 
-NPM INSTALL (installs dependencies)
+NPM INSTALL (instala dependencias)
 
-NPM RUN START (serves the build folder in localhost:8080)
+NPM RUN START (sirve la app compilada en https://localhost:8080)
