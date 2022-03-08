@@ -26,19 +26,19 @@ export default function AppRoutes(props) {
     const login = <LoginForm setHasToken={props.setHasToken}/>
     const recipeDetails = <RecipeDetails allRecipes={props.allRecipes}/>
 
-    const goToLogin = <Navigate to="/login"/>
-    const goToHome = <Navigate to="/"/>
+    const goToLogin = <Navigate to="/alkemy-challenge-menu-app/login"/>
+    const goToHome = <Navigate to="/alkemy-challenge-menu-app"/>
 
 
     return (
         <Routes>
-            <Route path="/" element={props.hasToken ? menu : goToLogin}></Route>
+            <Route path="/alkemy-challenge-menu-app" element={props.hasToken ? menu : goToLogin}></Route>
 
-            <Route path="/search" element={props.hasToken ? search : goToLogin}></Route>
+            <Route path="/alkemy-challenge-menu-app/search" element={props.hasToken ? search : goToLogin}></Route>
         
-            <Route path="/login" element={!props.hasToken ? login : <Navigate to="/"/>}></Route>
+            <Route path="/alkemy-challenge-menu-app/login" element={!props.hasToken ? login : <Navigate to="/"/>}></Route>
 
-            <Route path="/recipeInfo/:id" element={props.hasToken ? recipeDetails : goToLogin}></Route>
+            <Route path="/alkemy-challenge-menu-app/recipeInfo/:id" element={props.hasToken ? recipeDetails : goToLogin}></Route>
     
             <Route path="/alkemy-challenge-menu-app" element={goToHome}></Route>
 
