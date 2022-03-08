@@ -55,7 +55,7 @@ export default function Menu(props) {
                     <Text>Average health score: {avgHealthScore ? avgHealthScore : ""}</Text>
                 </Stack>
                 
-                <Grid justify="center" align="center" templateColumns={["1fr", "1fr 1fr 1fr 1fr"]} gap="1em">
+                <Grid justify="center" align="center" p='1em' spacing='1em' templateColumns={["1fr", "repeat(4, 1fr)"]} gap="1em">
                     {props.menuRecipes.map(recipe => <RecipeCard menuRecipes={props.menuRecipes}
                                                                 addToMenu={props.addToMenu}
                                                                 deleteFromMenu={props.deleteFromMenu}
