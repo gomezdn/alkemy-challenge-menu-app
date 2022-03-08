@@ -74,7 +74,7 @@ export default function RecipeCard(props) {
                 {displayPropertiesListItems(recipeProps)}
             </List>
             <Stack w="100%" direction="row" justify="space-around">
-                <Link to={`/recipeInfo/${recipeObject.id}`}>
+                <Link to={`/alkemy-challenge-menu-app/recipeInfo/${recipeObject.id}`}>
                     <Button mb="1em" size="md" p={["1.4em 1em","0 1em"]} bg="#D5C3C6"
                         colorScheme="red" variant="outline">Details</Button>
                 </Link>
