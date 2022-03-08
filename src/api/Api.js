@@ -8,7 +8,7 @@ const API = {
         const data = {email: user, password: pass}
         const url = "https://challenge-react.alkemy.org/"
         
-        return axios.post(url, data).then(res => res.data.token)
+        return axios.post(url, data).then(res => res.data.token).catch(err => console.log(err))
     },
 
     getRecipes: (searchTerm) => {
