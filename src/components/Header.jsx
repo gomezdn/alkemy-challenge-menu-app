@@ -14,9 +14,9 @@ function NavBar(props) {
 
     return (
         <Stack justify="space-between" spacing="1em" direction="row" color="white" fontSize="1.2em" as="nav">
-            <Link to="/">Menu</Link>
-            <Link to="/search">Search</Link>
-            {props.hasToken ? <Link onClick={logout} to="/login">Logout</Link> : ""}
+            <Link to="/alkemy-challenge-menu-app/">Menu</Link>
+            <Link to="/alkemy-challenge-menu-app/search">Search</Link>
+            {props.hasToken ? <Link onClick={logout} to="/">Logout</Link> : ""}
         </Stack>
     )
 }

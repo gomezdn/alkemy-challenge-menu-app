@@ -47,7 +47,7 @@ export default function LoginForm(props) {
         API.getLoginToken(user, pass).then(res => {
                                         saveTokenToStorage(res)
                                         props.setHasToken(true)
-                                        navigate("/")})
+                                        navigate("/alkemy-challenge-menu-app")})
                                      .catch(handleError)
     }
 

@@ -36,11 +36,11 @@ export default function AppRoutes(props) {
 
             <Route path="/alkemy-challenge-menu-app/search" element={props.hasToken ? search : goToLogin}></Route>
         
-            <Route path="/alkemy-challenge-menu-app/login" element={!props.hasToken ? login : <Navigate to="/"/>}></Route>
+            <Route path="/alkemy-challenge-menu-app/login" element={!props.hasToken ? login : <Navigate to="/alkemy-challenge-menu-app"/>}></Route>
 
             <Route path="/alkemy-challenge-menu-app/recipeInfo/:id" element={props.hasToken ? recipeDetails : goToLogin}></Route>
     
-            <Route path="/alkemy-challenge-menu-app" element={goToHome}></Route>
+            <Route path="/" element={goToHome}></Route>
 
             <Route path="*" element={<NotFound />}></Route>
          </Routes>

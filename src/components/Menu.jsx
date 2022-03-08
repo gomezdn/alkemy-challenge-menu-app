@@ -10,7 +10,7 @@ function EmptyMenu() {
         <Container maxW="max-content">
             <Stack mt="3em" align="center" direction="column" justify="center" spacing="2.2em">
                 <Image src={MenuCart} w={["250px", "300px"]}/>
-                <Text fontSize="1.5em" maxW="max-content">You haven't added any recipe yet! Go <Link to="/search"><Text as="span" color="brown">search</Text></Link> for them.</Text>
+                <Text fontSize="1.5em" maxW="max-content">You haven't added any recipe yet! Go <Link to="/alkemy-challenge-menu-app/search"><Text as="span" color="brown">search</Text></Link> for them.</Text>
             </Stack>
         </Container>
     )
